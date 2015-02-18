@@ -1,7 +1,8 @@
-#unzip the datafile in your working directory
+#unzip the datafile in your working directory and the dplyr package is needed
 
 #create backup/store directory
 if(!file.exists("./data")){dir.create("./data")}
+library(dplyr)
 
 #read needed data files
 X_train <- read.table("./UCI HAR Dataset/train/X_train.txt", quote="\"", stringsAsFactors=FALSE)
@@ -15,13 +16,15 @@ subject_test <- read.table("./UCI HAR Dataset/test/subject_test.txt", quote="\""
 #read label files
 activity_labels <- read.table("./UCI HAR Dataset/activity_labels.txt", quote="\"", stringsAsFactors=FALSE)
 labels <- read.table("./UCI HAR Dataset/features.txt", quote="\"", stringsAsFactors=FALSE)
+#remove punctuation from labels
+labels <- gsub("[[:punct:]]", "", labels$V2)
 
 #set descriptive variable names
-names(X_train) <- labels$V2
+names(X_train) <- labels
 names(y_train) <- c("activity")
 names(subject_train) <- c("subject_ID")
 
-names(X_test) <- labels$V2
+names(X_test) <- labels
 names(y_test) <- c("activity")
 names(subject_test) <- c("subject_ID")
 
@@ -37,16 +40,21 @@ testData$activity <- factor(testData$activity, labels=activity_labels$V2)
 trainData$group <- c("train")
 testData$group <- c("test")
 
-tidyData <- rbind(testData,trainData)
+#merge test and train data together
+data <- rbind(testData,trainData)
 
 #create backup
-write.csv(tidyData,"./data/tidyData.csv", row.names=FALSE)
+write.table(data,"./data/tidyData.txt", row.names=FALSE)
 
 #subset on mean and std
-
+subset <- select(data,subject_ID,activity, group,contains("mean"),contains("std")) 
 
 #data set with the average of each variable for each activity and each subject
+grouped <- group_by(subset,subject_ID,activity) 
+final <- summarise_each(grouped, funs(mean),-group)
 
+#create backup
+write.table(final,"./data/summaryData.txt", row.names=FALSE)
 
 
 
