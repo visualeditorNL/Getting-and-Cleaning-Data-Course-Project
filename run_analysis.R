@@ -41,8 +41,8 @@ trainData$activity <- factor(trainData$activity, labels=activity_labels$V2)
 testData$activity <- factor(testData$activity, labels=activity_labels$V2)
 
 #add group column to identify test vs train group
-trainData$group <- c("train")
-testData$group <- c("test")
+trainData$group <- factor(c("train"))
+testData$group <- factor(c("test"))
 
 #merge test and train data together
 data <- rbind(testData,trainData)
