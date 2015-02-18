@@ -1,8 +1,12 @@
-#unzip the datafile in your working directory and the dplyr package is needed
+#unzip the datafile in your working directory and the dplyr and tidyr package are needed for this script
+#download here: https://github.com/hadley/dplyr and here: https://github.com/hadley/tidyr if you don't have them
 
 #create backup/store directory
 if(!file.exists("./data")){dir.create("./data")}
+
+#load libraries
 library(dplyr)
+library(tidyr)
 
 #read needed data files
 X_train <- read.table("./UCI HAR Dataset/train/X_train.txt", quote="\"", stringsAsFactors=FALSE)
