@@ -13,10 +13,10 @@ Run the script provided [run_analysis.R](https://github.com/visualeditorNL/Getti
 
 After running the script you'll find a data folder in your working directory with two data files:<p>
 ###1. Data_Step4.txt<br>
-The set consists of 89 variables of 10299 observations. Variables:
-1. subject_ID - 1 to 30, ID number for every paticipant of the experiment
-2. activity - Activity during observation, i.e.: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING
-3. group - Where the participants in the test or train group, i.e.: Test or Train
-4. to 89. Means and Standarddeviations of the measurements during the observations
+The set consists of 89 variables of 10299 observations. <br>Variables:<br>
+1. subject_ID - 1 to 30, ID number for every paticipant of the experiment<br>
+2. activity - Activity during observation, i.e.: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING<br>
+3. group - Where the participants in the test or train group, i.e.: Test or Train<br>
+4. to 89. Means and Standarddeviations of the measurements during the observations<br>
 
 ###2. tidyData_step5.txt
