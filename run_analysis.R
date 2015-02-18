@@ -43,18 +43,18 @@ testData$group <- c("test")
 #merge test and train data together
 data <- rbind(testData,trainData)
 
-#create backup
-write.table(data,"./data/tidyData.txt", row.names=FALSE)
-
 #subset on mean and std
 subset <- select(data,subject_ID,activity, group,contains("mean"),contains("std")) 
+
+#create backup
+write.table(subset,"./data/Data_Step4.txt", row.names=FALSE)
 
 #data set with the average of each variable for each activity and each subject
 grouped <- group_by(subset,subject_ID,activity) 
 final <- summarise_each(grouped, funs(mean),-group)
 
 #create backup
-write.table(final,"./data/summaryData.txt", row.names=FALSE)
+write.table(final,"./data/tidyData_step5.txt", row.names=FALSE)
 
 
 
